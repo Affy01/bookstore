@@ -1,7 +1,5 @@
 import sqlite3
 
-INSERT_STATEMENT = "INSERT INTO book VALUES (NULL, {}, {}, {}, {})"
-
 
 class sql_db:
     """
@@ -32,7 +30,6 @@ class sql_db:
         :param year: Year published
         :param isbn: isbn code
         """
-        # self.cur.execute(INSERT_STATEMENT.format(title, author, year, isbn))
         self.cur.execute("INSERT INTO book VALUES (NULL, ?, ?, ?, ?)", (title, author, year, isbn))
         self.conn.commit()
 
@@ -43,8 +40,8 @@ class sql_db:
         self.cur.execute("SELECT * FROM book")
         rows = self.cur.fetchall()
         print(rows)
-        if rows(1) == "CloudAtlas":
-            rows(1) = "testBook"
+        # if rows(1) == "CloudAtlas":
+        #     rows(1) = "testBook"
         return rows
 
     def search(self, title="", author="", year="", isbn=""):
@@ -71,11 +68,3 @@ class sql_db:
                          (title, author, year, isbn, id))
         self.conn.commit()
 
-
-# sdb = sql_db("book")
-# sdb.insert("Freakonomics", "Steven and Stephen", 2009, 00000000)
-# print(sdb.get_all())
-# sdb.delete(3)
-# sdb.update(3, title="Freakonomics", author="Steven and Stephen", year=2019, isbn=100)
-# print(sdb.get_all())
-# print(sdb.search(author="Dave Mitchell"))

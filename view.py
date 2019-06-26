@@ -13,7 +13,6 @@ def clear_entries():
 def get_selected_row(event=None):
     global book
     if list1.curselection():
-        print(list1.curselection())
         index = list1.curselection()[0]
         book = list1.get(index)
         clear_entries()
